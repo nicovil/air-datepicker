@@ -1349,7 +1349,7 @@
                 this.nav._render();
 
                 if (this.opts.onChangeView) {
-                    this.opts.onChangeView(val)
+                    this.opts.onChangeView(val, this)
                 }
                 if (this.elIsInput && this.visible) this.setPosition();
             }
