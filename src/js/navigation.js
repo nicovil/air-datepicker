@@ -5,10 +5,10 @@
         '<div class="datepicker--nav-action" data-action="next">#{nextHtml}</div>',
         buttonsContainerTemplate = '<div class="datepicker--buttons"></div>',
         button = '<span class="datepicker--button" data-action="#{action}">#{label}</span>',
-        datepicker = $.fn.datepicker,
-        dp = datepicker.Constructor;
+        airDatepicker = $.fn.airDatepicker,
+        dp = airDatepicker.Constructor;
 
-    datepicker.Navigation = function (d, opts) {
+    airDatepicker.Navigation = function (d, opts) {
         this.d = d;
         this.opts = opts;
 
@@ -17,7 +17,7 @@
         this.init();
     };
 
-    datepicker.Navigation.prototype = {
+    airDatepicker.Navigation.prototype = {
         init: function () {
             this._buildBaseHtml();
             this._bindEvents();
@@ -26,7 +26,7 @@
         _bindEvents: function () {
             this.d.$nav.on('click', '.datepicker--nav-action', $.proxy(this._onClickNavButton, this));
             this.d.$nav.on('click', '.datepicker--nav-title', $.proxy(this._onClickNavTitle, this));
-            this.d.$datepicker.on('click', '.datepicker--button', $.proxy(this._onClickNavButton, this));
+            this.d.$airDatepicker.on('click', '.datepicker--button', $.proxy(this._onClickNavButton, this));
         },
 
         _buildBaseHtml: function () {
@@ -75,8 +75,8 @@
         },
 
         _addButtonsContainer: function () {
-            this.d.$datepicker.append(buttonsContainerTemplate);
-            this.$buttonsContainer = $('.datepicker--buttons', this.d.$datepicker);
+            this.d.$airDatepicker.append(buttonsContainerTemplate);
+            this.$buttonsContainer = $('.datepicker--buttons', this.d.$airDatepicker);
         },
 
         setNavStatus: function () {

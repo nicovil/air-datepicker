@@ -14,10 +14,10 @@
         '<div class="datepicker--cells datepicker--cells-years"></div>' +
         '</div>'
         },
-        datepicker = $.fn.datepicker,
-        dp = datepicker.Constructor;
+        airDatepicker = $.fn.airDatepicker,
+        dp = airDatepicker.Constructor;
 
-    datepicker.Body = function (d, type, opts) {
+    airDatepicker.Body = function (d, type, opts) {
         this.d = d;
         this.type = type;
         this.opts = opts;
@@ -27,7 +27,7 @@
         this.init();
     };
 
-    datepicker.Body.prototype = {
+    airDatepicker.Body.prototype = {
         init: function () {
             this._buildBaseHtml();
             this._render();

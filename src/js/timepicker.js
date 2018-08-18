@@ -14,17 +14,17 @@
         '   </div>' +
         '</div>' +
         '</div>',
-        datepicker = $.fn.datepicker,
-        dp = datepicker.Constructor;
+        airDatepicker = $.fn.airDatepicker,
+        dp = airDatepicker.Constructor;
 
-    datepicker.Timepicker = function (inst, opts) {
+    airDatepicker.Timepicker = function (inst, opts) {
         this.d = inst;
         this.opts = opts;
 
         this.init();
     };
 
-    datepicker.Timepicker.prototype = {
+    airDatepicker.Timepicker.prototype = {
         init: function () {
             var input = 'input';
             this._setTime(this.d.date);
@@ -124,7 +124,7 @@
                 },
                 _template = dp.template(template, data);
 
-            this.$timepicker = $(_template).appendTo(this.d.$datepicker);
+            this.$timepicker = $(_template).appendTo(this.d.$airDatepicker);
             this.$ranges = $('[type="range"]', this.$timepicker);
             this.$hours = $('[name="hours"]', this.$timepicker);
             this.$minutes = $('[name="minutes"]', this.$timepicker);
@@ -249,7 +249,7 @@
         _onChangeRange: function (e) {
             var $target = $(e.target),
                 name = $target.attr('name');
-            
+
             this.d.timepickerIsActive = true;
 
             this[name] = $target.val();
