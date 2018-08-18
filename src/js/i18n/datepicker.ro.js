@@ -1,4 +1,4 @@
-$.fn.datepicker.language['ro'] = {
+$.fn.airDatepicker.language['ro'] = {
     days: ['Duminică', 'Luni', 'Marţi', 'Miercuri', 'Joi', 'Vineri', 'Sâmbătă'],
     daysShort: ['Dum', 'Lun', 'Mar', 'Mie', 'Joi', 'Vin', 'Sâm'],
     daysMin: ['D', 'L', 'Ma', 'Mi', 'J', 'V', 'S'],

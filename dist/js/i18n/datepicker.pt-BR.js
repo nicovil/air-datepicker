@@ -1,4 +1,5 @@
-;(function ($) { $.fn.datepicker.language['pt-BR'] = {
+; (function ($) {
+    $.fn.airDatepicker.language['pt-BR'] = {
     days: ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado'],
     daysShort: ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sab'],
     daysMin: ['Do', 'Se', 'Te', 'Qu', 'Qu', 'Se', 'Sa'],

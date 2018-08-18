@@ -26,58 +26,58 @@ describe('Options', function () {
 
     describe('classes', function () {
         it('should add extra classes to datepicker', function () {
-            dp = $input.datepicker({
+            dp = $input.airDatepicker({
                 classes: 'custom-class'
-            }).data('datepicker');
+            }).data('airDatepicker');
 
-            expect(dp.$datepicker.attr('class')).to.have.string('custom-class')
+            expect(dp.$airDatepicker.attr('class')).to.have.string('custom-class')
 
         })
     });
 
     describe('inline', function () {
         it('if true, should be always visible', function () {
-            dp = $input.datepicker({
+            dp = $input.airDatepicker({
                 inline: true
-            }).data('datepicker');
+            }).data('airDatepicker');
 
-            expect(dp.$datepicker.parent().attr('class')).to.have.string('datepicker-inline');
+            expect(dp.$airDatepicker.parent().attr('class')).to.have.string('datepicker-inline');
         });
         it('if false, should be hidden', function () {
-            dp = $input.datepicker({
+            dp = $input.airDatepicker({
                 inline: false
-            }).data('datepicker');
+            }).data('airDatepicker');
 
-            expect(dp.$datepicker.parent().attr('class')).to.have.string('datepickers-container');
+            expect(dp.$airDatepicker.parent().attr('class')).to.have.string('datepickers-container');
         })
     });
 
     describe('language', function () {
         it('should change language to English if it `en`', function () {
-            dp = $input.datepicker({
+            dp = $input.airDatepicker({
                 language: 'en'
-            }).data('datepicker');
+            }).data('airDatepicker');
 
-            expect(dp.loc.days).to.eql($.fn.datepicker.language.en.days);
+            expect(dp.loc.days).to.eql($.fn.airDatepicker.language.en.days);
         });
         it('should change language to custom if object is passed', function () {
             var daysMin = ['В','П','В','С','Ч','П','С'];
-            dp = $input.datepicker({
+            dp = $input.airDatepicker({
                 language: {
                     daysMin: daysMin
                 }
-            }).data('datepicker');
+            }).data('airDatepicker');
 
             expect(dp.loc.daysMin).to.eql(daysMin);
-            expect(dp.loc.days).to.eql($.fn.datepicker.language.ru.days);
+            expect(dp.loc.days).to.eql($.fn.airDatepicker.language.ru.days);
         })
     });
 
     describe('startDate', function () {
         it('should change initial viewing date', function () {
-            dp = $input.datepicker({
+            dp = $input.airDatepicker({
                 startDate: new Date(2014,11,12)
-            }).data('datepicker');
+            }).data('airDatepicker');
 
             expect(dp.$nav.text()).to.have.string('Декабрь');
             expect(dp.$nav.text()).to.have.string('2014');
@@ -87,20 +87,20 @@ describe('Options', function () {
 
     describe('firstDay', function () {
         it('should change first day of week', function () {
-            dp = $input.datepicker({
+            dp = $input.airDatepicker({
                 firstDay: 2
-            }).data('datepicker');
+            }).data('airDatepicker');
 
-            var firstCell = $('.datepicker--days-names .datepicker--day-name', dp.$datepicker).eq(0);
+            var firstCell = $('.datepicker--days-names .datepicker--day-name', dp.$airDatepicker).eq(0);
 
             assert.equal(firstCell.text(),'Вт')
         })
         it('should change first day of week to `Воскресенье` if it `0`', function () {
-            dp = $input.datepicker({
+            dp = $input.airDatepicker({
                 firstDay: 0
-            }).data('datepicker');
+            }).data('airDatepicker');
 
-            var firstCell = $('.datepicker--days-names .datepicker--day-name', dp.$datepicker).eq(0);
+            var firstCell = $('.datepicker--days-names .datepicker--day-name', dp.$airDatepicker).eq(0);
 
             assert.equal(firstCell.text(),'Вс')
         })
@@ -108,12 +108,12 @@ describe('Options', function () {
 
     describe('weekends', function () {
         it('should change days, which should considered to be weekends', function () {
-            dp = $input.datepicker({
+            dp = $input.airDatepicker({
                 weekends: [0, 2],
                 firstDay: 0
-            }).data('datepicker');
+            }).data('airDatepicker');
 
-            var $cells = $('.datepicker--cell-day', dp.$datepicker);
+            var $cells = $('.datepicker--cell-day', dp.$airDatepicker);
 
             expect($cells.eq(0).attr('class')).to.have.string('-weekend-')
             expect($cells.eq(2).attr('class')).to.have.string('-weekend-')
@@ -147,9 +147,9 @@ describe('Options', function () {
         for (var format in formats) {
             (function (format) {
                 it(format, function () {
-                    dp = $input.datepicker({
+                    dp = $input.airDatepicker({
                         dateFormat: 'Selected date: ' + format
-                    }).data('datepicker');
+                    }).data('airDatepicker');
 
                     dp.selectDate(date);
                     assert.equal(dp.$el.val(), 'Selected date: ' + formats[format]);
@@ -158,10 +158,10 @@ describe('Options', function () {
         }
 
         it('should work with special characters', function () {
-            dp = $input.datepicker({
+            dp = $input.airDatepicker({
                 language: 'de',
                 dateFormat: 'Month is MM'
-            }).data('datepicker');
+            }).data('airDatepicker');
             dp.selectDate(new Date(2016, 2, 1));
             expect(dp.$el.val()).to.be.equal('Month is März');
         })
@@ -169,9 +169,9 @@ describe('Options', function () {
 
     describe('altField', function () {
         it('should define `$altField` if selector or jQuery object is passed', function () {
-            dp = $input.datepicker({
+            dp = $input.airDatepicker({
                 altField: '.alt-field'
-            }).data('datepicker');
+            }).data('airDatepicker');
 
             assert(dp.$altField.length);
         })
@@ -181,10 +181,10 @@ describe('Options', function () {
         it('should define date format for alternative field', function () {
             var date = new Date(2015, 11, 17);
 
-            dp = $input.datepicker({
+            dp = $input.airDatepicker({
                 altField: '.alt-field',
                 altFieldDateFormat: 'dd-mm-yyyy'
-            }).data('datepicker');
+            }).data('airDatepicker');
 
             dp.selectDate(date);
 
@@ -194,12 +194,12 @@ describe('Options', function () {
         it('should support 24 hour mode, even if main date format is in 12', function () {
             var date = new Date(2015, 11, 17, 22, 47);
 
-            dp = $input.datepicker({
+            dp = $input.airDatepicker({
                 timepicker: true,
                 timeFormat: 'hh:ii aa',
                 altField: '.alt-field',
                 altFieldDateFormat: 'dd-mm-yyyy hh:ii'
-            }).data('datepicker');
+            }).data('airDatepicker');
 
             dp.selectDate(date);
 
@@ -209,12 +209,12 @@ describe('Options', function () {
         it('should support 12 hour mode', function () {
             var date = new Date(2015, 11, 17, 22, 47);
 
-            dp = $input.datepicker({
+            dp = $input.airDatepicker({
                 timepicker: true,
                 timeFormat: 'hh:ii',
                 altField: '.alt-field',
                 altFieldDateFormat: 'dd-mm-yyyy hh:ii aa'
-            }).data('datepicker');
+            }).data('airDatepicker');
 
             dp.selectDate(date);
 
@@ -226,7 +226,7 @@ describe('Options', function () {
         it('when true, click on selected cells should remove selection', function () {
             var date = new Date(2015, 11, 17);
 
-            dp = $input.datepicker().data('datepicker');
+            dp = $input.airDatepicker().data('airDatepicker');
 
             dp.selectDate(date);
             dp._getCell(date, 'day').click();
@@ -237,9 +237,9 @@ describe('Options', function () {
         it('when false, click on selected cell must do nothing', function () {
             var date = new Date(2015, 11, 17);
 
-            dp = $input.datepicker({
+            dp = $input.airDatepicker({
                 toggleSelected: false
-            }).data('datepicker');
+            }).data('airDatepicker');
 
             dp.selectDate(date);
             dp._getCell(date, 'day').click();
@@ -316,7 +316,7 @@ describe('Options', function () {
                 valid = currentCase.validDate;
 
             it(currentCase.it, function () {
-                dp = $input.datepicker().data('datepicker');
+                dp = $input.airDatepicker().data('airDatepicker');
                 dp.selectDate(date);
 
                 keys.forEach(function (key) {
@@ -345,7 +345,7 @@ describe('Options', function () {
             offset;
 
         function prepare (position) {
-            dp = $input.datepicker({position: position}).data('datepicker');
+            dp = $input.airDatepicker({ position: position }).data('airDatepicker');
             $input.focus();
 
             iDims = {
@@ -356,10 +356,10 @@ describe('Options', function () {
             };
 
             dpDims = {
-                width: dp.$datepicker.outerWidth(),
-                height: dp.$datepicker.outerHeight(),
-                left: dp.$datepicker.offset().left,
-                top: dp.$datepicker.offset().top
+                width: dp.$airDatepicker.outerWidth(),
+                height: dp.$airDatepicker.outerHeight(),
+                left: dp.$airDatepicker.offset().left,
+                top: dp.$airDatepicker.offset().top
             };
 
             offset = dp.opts.offset;
@@ -407,9 +407,9 @@ describe('Options', function () {
             
             (function (offset) {
                 it('should set offset ' + offset + ' from main axis', function () {
-                    dp = $input.datepicker({
+                    dp = $input.airDatepicker({
                         offset: offset
-                    }).data('datepicker');
+                    }).data('airDatepicker');
                     $input.focus();
 
                     iDims = {
@@ -420,10 +420,10 @@ describe('Options', function () {
                     };
 
                     dpDims = {
-                        width: dp.$datepicker.outerWidth(),
-                        height: dp.$datepicker.outerHeight(),
-                        left: dp.$datepicker.offset().left,
-                        top: dp.$datepicker.offset().top
+                        width: dp.$airDatepicker.outerWidth(),
+                        height: dp.$airDatepicker.outerHeight(),
+                        left: dp.$airDatepicker.offset().left,
+                        top: dp.$airDatepicker.offset().top
                     };
 
                     assert.equal(iDims.top + iDims.height + offset, dpDims.top);
@@ -436,23 +436,23 @@ describe('Options', function () {
 
     describe('view', function () {
         it('should set initial datepicker view to `months`', function () {
-            dp = $input.datepicker({view: 'months'}).data('datepicker');
+            dp = $input.airDatepicker({ view: 'months' }).data('airDatepicker');
             assert.equal('months', dp.view)
         });
         it('should set initial datepicker view to `years`', function () {
-            dp = $input.datepicker({view: 'years'}).data('datepicker');
+            dp = $input.airDatepicker({ view: 'years' }).data('airDatepicker');
             assert.equal('years', dp.view)
         })
     });
 
     describe('minView', function () {
         it('should set minimum possible view', function () {
-            dp = $input.datepicker({
+            dp = $input.airDatepicker({
                 view: 'months',
                 minView: 'months'
-            }).data('datepicker');
+            }).data('airDatepicker');
 
-            $('.datepicker--cell-month', dp.$datepicker).eq(0).click();
+            $('.datepicker--cell-month', dp.$airDatepicker).eq(0).click();
             assert.equal('months', dp.view)
         });
 
@@ -462,19 +462,19 @@ describe('Options', function () {
         var date = new Date(2015, 11, 22);
 
         it('if `true` should show days from other months', function () {
-            dp = $input.datepicker().data('datepicker');
+            dp = $input.airDatepicker().data('airDatepicker');
             dp.date = date;
 
-            var $cell = $('.datepicker--cell-day.-other-month-', dp.$datepicker).eq(0);
+            var $cell = $('.datepicker--cell-day.-other-month-', dp.$airDatepicker).eq(0);
 
             assert($cell.text(), 'must have text')
         });
 
         it('if `false` should hide days from other months', function () {
-            dp = $input.datepicker({showOtherMonths: false}).data('datepicker');
+            dp = $input.airDatepicker({ showOtherMonths: false }).data('airDatepicker');
             dp.date = date;
 
-            var $cell = $('.datepicker--cell-day.-other-month-', dp.$datepicker).eq(0);
+            var $cell = $('.datepicker--cell-day.-other-month-', dp.$airDatepicker).eq(0);
 
             expect($cell.text()).to.be.empty;
         });
@@ -485,19 +485,19 @@ describe('Options', function () {
         var date = new Date(2015, 11, 22);
 
         it('if `true` you can select cells from other months', function () {
-            dp = $input.datepicker().data('datepicker');
+            dp = $input.airDatepicker().data('airDatepicker');
             dp.date = date;
 
-            var $cell = $('.datepicker--cell-day.-other-month-', dp.$datepicker).eq(0);
+            var $cell = $('.datepicker--cell-day.-other-month-', dp.$airDatepicker).eq(0);
             $cell.click();
             expect(dp.selectedDates).to.have.length(1)
         });
 
         it('if `false` you can not select cells from other months ', function () {
-            dp = $input.datepicker({selectOtherMonths: false}).data('datepicker');
+            dp = $input.airDatepicker({ selectOtherMonths: false }).data('airDatepicker');
             dp.date = date;
 
-            var $cell = $('.datepicker--cell-day.-other-month-', dp.$datepicker).eq(0);
+            var $cell = $('.datepicker--cell-day.-other-month-', dp.$airDatepicker).eq(0);
             $cell.click();
             expect(dp.selectedDates).to.have.length(0)
         });
@@ -508,10 +508,10 @@ describe('Options', function () {
         var date = new Date(2015, 11, 22);
 
         it('if `true` datepicker will translate to other month if date from other month is selected', function () {
-            dp = $input.datepicker().data('datepicker');
+            dp = $input.airDatepicker().data('airDatepicker');
             dp.date = date;
 
-            var $cell = $('.datepicker--cell-day.-other-month-', dp.$datepicker).eq(0);
+            var $cell = $('.datepicker--cell-day.-other-month-', dp.$airDatepicker).eq(0);
             $cell.click();
 
             assert.equal(dp.date.getMonth(), 10)
@@ -519,10 +519,10 @@ describe('Options', function () {
         });
 
         it('if `false` datepicker will stay on same month when selecting dates from other month', function () {
-            dp = $input.datepicker({moveToOtherMonthsOnSelect: false}).data('datepicker');
+            dp = $input.airDatepicker({ moveToOtherMonthsOnSelect: false }).data('airDatepicker');
             dp.date = date;
 
-            var $cell = $('.datepicker--cell-day.-other-month-', dp.$datepicker).eq(0);
+            var $cell = $('.datepicker--cell-day.-other-month-', dp.$airDatepicker).eq(0);
             $cell.click();
 
             assert.equal(dp.date.getMonth(), 11)
@@ -533,25 +533,25 @@ describe('Options', function () {
     describe('showOtherYears', function () {
         var date = new Date(2015, 11, 22);
         it('if `true` should show years from other decades', function () {
-            dp = $input.datepicker({
+            dp = $input.airDatepicker({
                 view: 'years'
-            }).data('datepicker');
+            }).data('airDatepicker');
             dp.date = date;
 
-            var $cell = $('.datepicker--cell-year.-other-decade-', dp.$datepicker).eq(0);
+            var $cell = $('.datepicker--cell-year.-other-decade-', dp.$airDatepicker).eq(0);
 
             assert($cell.text(), 'must have text')
         });
 
         it('if `false` should hide years from other decades', function () {
             destroy = false;
-            dp = $input.datepicker({
+            dp = $input.airDatepicker({
                 view: 'years',
                 showOtherYears: false
-            }).data('datepicker');
+            }).data('airDatepicker');
             dp.date = date;
 
-            var $cell = $('.datepicker--cell-year.-other-decade-', dp.$datepicker).eq(0);
+            var $cell = $('.datepicker--cell-year.-other-decade-', dp.$airDatepicker).eq(0);
 
             expect($cell.text()).to.be.empty;
         });
@@ -562,27 +562,27 @@ describe('Options', function () {
         var date = new Date(2015, 11, 22);
 
         it('if `true` you can select cells from other decades', function () {
-            dp = $input.datepicker({
+            dp = $input.airDatepicker({
                 view: 'years',
                 minView: 'years',
                 selectOtherYears: true
-            }).data('datepicker');
+            }).data('airDatepicker');
             dp.date = date;
 
-            var $cell = $('.datepicker--cell-year.-other-decade-', dp.$datepicker).eq(0);
+            var $cell = $('.datepicker--cell-year.-other-decade-', dp.$airDatepicker).eq(0);
             $cell.click();
             expect(dp.selectedDates).to.have.length(1)
         });
 
         it('if `false` you can not select cells from other months ', function () {
-            dp = $input.datepicker({
+            dp = $input.airDatepicker({
                 view: 'years',
                 minView: 'years',
                 selectOtherYears: false
-            }).data('datepicker');
+            }).data('airDatepicker');
             dp.date = date;
 
-            var $cell = $('.datepicker--cell-year.-other-decade-', dp.$datepicker).eq(0);
+            var $cell = $('.datepicker--cell-year.-other-decade-', dp.$airDatepicker).eq(0);
             $cell.click();
             expect(dp.selectedDates).to.have.length(0)
         });
@@ -593,14 +593,14 @@ describe('Options', function () {
         var date = new Date(2015, 11, 22);
 
         it('if `true` datepicker will translate to other decade if date from other decade is selected', function () {
-            dp = $input.datepicker({
+            dp = $input.airDatepicker({
                 view: 'years',
                 minView: 'years',
                 moveToOtherYearsOnSelect: true
-            }).data('datepicker');
+            }).data('airDatepicker');
             dp.date = date;
 
-            var $cell = $('.datepicker--cell-year.-other-decade-', dp.$datepicker).eq(0);
+            var $cell = $('.datepicker--cell-year.-other-decade-', dp.$airDatepicker).eq(0);
             $cell.click();
 
             assert.equal(dp.date.getFullYear(), 2009)
@@ -608,14 +608,14 @@ describe('Options', function () {
         });
 
         it('if `false` datepicker will stay on same decade when selecting dates from other decade', function () {
-            dp = $input.datepicker({
+            dp = $input.airDatepicker({
                 view: 'years',
                 minView: 'years',
                 moveToOtherYearsOnSelect: false
-            }).data('datepicker');
+            }).data('airDatepicker');
             dp.date = date;
 
-            var $cell = $('.datepicker--cell-year.-other-decade-', dp.$datepicker).eq(0);
+            var $cell = $('.datepicker--cell-year.-other-decade-', dp.$airDatepicker).eq(0);
             $cell.click();
 
             assert.equal(dp.date.getFullYear(), 2015)
@@ -626,13 +626,13 @@ describe('Options', function () {
         it('should set minimum possible date to choose', function () {
             var date = new Date(2015, 11, 30);
 
-            dp = $input.datepicker({
+            dp = $input.airDatepicker({
                 minDate: date
-            }).data('datepicker');
+            }).data('airDatepicker');
 
             dp.date = date;
 
-            var $cell = $('.datepicker--cell-day[data-year="2015"][data-month="11"][data-date="30"]', dp.$datepicker);
+            var $cell = $('.datepicker--cell-day[data-year="2015"][data-month="11"][data-date="30"]', dp.$airDatepicker);
 
             expect($cell.prev().attr('class')).to.have.string('-disabled-')
         })
@@ -642,13 +642,13 @@ describe('Options', function () {
         it('should set maximum possible date to choose', function () {
             var date = new Date(2015, 11, 30);
 
-            dp = $input.datepicker({
+            dp = $input.airDatepicker({
                 maxDate: date
-            }).data('datepicker');
+            }).data('airDatepicker');
 
             dp.date = date;
 
-            var $cell = $('.datepicker--cell-day[data-year="2015"][data-month="11"][data-date="30"]', dp.$datepicker);
+            var $cell = $('.datepicker--cell-day[data-year="2015"][data-month="11"][data-date="30"]', dp.$airDatepicker);
 
             expect($cell.next().attr('class')).to.have.string('-disabled-')
         })
@@ -658,14 +658,14 @@ describe('Options', function () {
         it('if `true` then navigation buttons will be disabled if there is no more possible dates to select to in next or prev month', function () {
             var date = new Date(2015, 11, 30);
 
-            dp = $input.datepicker({
+            dp = $input.airDatepicker({
                 minDate: date,
                 inline: true
-            }).data('datepicker');
+            }).data('airDatepicker');
 
             dp.date = date;
 
-            var $prev = $('.datepicker--nav-action[data-action="prev"]', dp.$datepicker);
+            var $prev = $('.datepicker--nav-action[data-action="prev"]', dp.$airDatepicker);
 
             expect($prev.attr('class')).to.have.string('-disabled-')
         })
@@ -673,9 +673,9 @@ describe('Options', function () {
 
     describe('multipleDates', function () {
         it('if `true` then one can select multiple dates', function () {
-            dp = $input.datepicker({
+            dp = $input.airDatepicker({
                 multipleDates: true
-            }).data('datepicker');
+            }).data('airDatepicker');
 
             dp.selectDate(new Date(2016, 0, 7));
             dp.selectDate(new Date(2016, 0, 8));
@@ -685,9 +685,9 @@ describe('Options', function () {
         });
 
         it('if `number` should limit length of selected dates by its value', function () {
-            dp = $input.datepicker({
+            dp = $input.airDatepicker({
                 multipleDates: 3
-            }).data('datepicker');
+            }).data('airDatepicker');
 
             dp.selectDate(new Date(2016, 0, 7));
             dp.selectDate(new Date(2016, 0, 8));
@@ -701,10 +701,10 @@ describe('Options', function () {
 
     describe('multipleDatesSeparator', function () {
         it('defines multiple dates separator sign', function () {
-            dp = $input.datepicker({
+            dp = $input.airDatepicker({
                 multipleDates: true,
                 multipleDatesSeparator: ' separator '
-            }).data('datepicker');
+            }).data('airDatepicker');
 
             dp.selectDate(new Date(2016, 0, 12));
             dp.selectDate(new Date(2016, 0, 13))
@@ -716,11 +716,11 @@ describe('Options', function () {
     describe('todayButton', function () {
         it('should add "today" button if true', function () {
 
-            dp = $input.datepicker({
+            dp = $input.airDatepicker({
                 todayButton: true
-            }).data('datepicker');
+            }).data('airDatepicker');
 
-            var $button = $('.datepicker--button', dp.$datepicker);
+            var $button = $('.datepicker--button', dp.$airDatepicker);
 
             expect($button.length).to.be.equal(1);
             expect($button.data('action')).to.be.equal('today');
@@ -731,11 +731,11 @@ describe('Options', function () {
     describe('clearButton', function () {
         it('should add "clear" button if true', function () {
 
-            dp = $input.datepicker({
+            dp = $input.airDatepicker({
                 clearButton: true
-            }).data('datepicker');
+            }).data('airDatepicker');
 
-            var $button = $('.datepicker--button', dp.$datepicker);
+            var $button = $('.datepicker--button', dp.$airDatepicker);
 
             expect($button.length).to.be.equal(1);
             expect($button.data('action')).to.be.equal('clear');
@@ -745,9 +745,9 @@ describe('Options', function () {
 
     describe('showEvent', function () {
         it('should define event type on which datepicker will be shown', function () {
-            dp = $input.datepicker({
+            dp = $input.airDatepicker({
                 showEvent: 'click'
-            }).data('datepicker');
+            }).data('airDatepicker');
 
             $input.click();
 
@@ -759,9 +759,9 @@ describe('Options', function () {
 
     describe('autoClose', function () {
         it('if true, when datepicker will close after date was selected', function () {
-            dp = $input.datepicker({
+            dp = $input.airDatepicker({
                 autoClose: true
-            }).data('datepicker');
+            }).data('airDatepicker');
 
             dp.show();
             dp.selectDate(new Date());
@@ -771,9 +771,9 @@ describe('Options', function () {
         });
 
         it('if false, when datepicker will not close after date was selected', function () {
-            dp = $input.datepicker({
+            dp = $input.airDatepicker({
                 autoClose: false
-            }).data('datepicker');
+            }).data('airDatepicker');
 
             dp.show();
             dp.selectDate(new Date());
@@ -785,10 +785,10 @@ describe('Options', function () {
 
     describe('monthsField', function () {
         it('defines which field from localization must be used as source for months name in "months view"', function () {
-            dp = $input.datepicker({
+            dp = $input.airDatepicker({
                 monthsField: 'months',
                 view: 'months'
-            }).data('datepicker');
+            }).data('airDatepicker');
 
             var $cell = $('.datepicker--cell-month').eq(0);
 
@@ -798,11 +798,11 @@ describe('Options', function () {
 
     describe('prevHtml', function () {
         it('defines html which should be used in "previous" button', function () {
-            dp = $input.datepicker({
+            dp = $input.airDatepicker({
                 prevHtml: 'previous'
-            }).data('datepicker');
+            }).data('airDatepicker');
 
-            var $prev = $('[data-action="prev"]', dp.$datepicker);
+            var $prev = $('[data-action="prev"]', dp.$airDatepicker);
 
             expect($prev.html()).to.be.equal('previous');
         });
@@ -810,11 +810,11 @@ describe('Options', function () {
 
     describe('nextHtml', function () {
         it('defines html which should be used in "next" button', function () {
-            dp = $input.datepicker({
+            dp = $input.airDatepicker({
                 nextHtml: 'next'
-            }).data('datepicker');
+            }).data('airDatepicker');
 
-            var $next = $('[data-action="next"]', dp.$datepicker);
+            var $next = $('[data-action="next"]', dp.$airDatepicker);
 
             expect($next.html()).to.be.equal('next');
         });
@@ -822,23 +822,23 @@ describe('Options', function () {
 
     describe('navTitles', function () {
         it('defines datepicker titles', function () {
-            dp = $input.datepicker({
+            dp = $input.airDatepicker({
                 navTitles: {
                     days: 'Days',
                     months: 'Months',
                     years: 'Years'
                 }
-            }).data('datepicker');
+            }).data('airDatepicker');
 
-            var $title = $('.datepicker--nav-title', dp.$datepicker);
+            var $title = $('.datepicker--nav-title', dp.$airDatepicker);
             expect($title.html()).to.have.string('Days');
 
             dp.view = 'months';
-            $title = $('.datepicker--nav-title', dp.$datepicker);
+            $title = $('.datepicker--nav-title', dp.$airDatepicker);
             expect($title.html()).to.have.string('Months');
 
             dp.view = 'years';
-            $title = $('.datepicker--nav-title', dp.$datepicker);
+            $title = $('.datepicker--nav-title', dp.$airDatepicker);
             expect($title.html()).to.have.string('Years');
 
         });
@@ -846,11 +846,11 @@ describe('Options', function () {
 
     describe('timepicker', function () {
         it('should add timepicker to calendar', function () {
-            dp = $input.datepicker({
+            dp = $input.airDatepicker({
                 timepicker: true
-            }).data('datepicker');
+            }).data('airDatepicker');
 
-            var $time = $('.datepicker--time', dp.$datepicker);
+            var $time = $('.datepicker--time', dp.$airDatepicker);
             expect($time).to.have.length(1)
 
         })
@@ -858,15 +858,15 @@ describe('Options', function () {
 
     describe('onlyTimepicker', function () {
         it('only timepicker should be visible', function () {
-            dp = $input.datepicker({
+            dp = $input.airDatepicker({
                 timepicker: true,
                 onlyTimepicker: true
-            }).data('datepicker');
+            }).data('airDatepicker');
 
-            var $time = $('.datepicker--time', dp.$datepicker),
-                $cells = $('.datepicker--cells', dp.$datepicker),
-                $nav = $('.datepicker--nav-title', dp.$datepicker),
-                _class = dp.$datepicker.hasClass('-only-timepicker-');
+            var $time = $('.datepicker--time', dp.$airDatepicker),
+                $cells = $('.datepicker--cells', dp.$airDatepicker),
+                $nav = $('.datepicker--nav-title', dp.$airDatepicker),
+                _class = dp.$airDatepicker.hasClass('-only-timepicker-');
 
             expect($time).to.have.length(1);
             expect($cells).to.have.length(0);
@@ -879,13 +879,13 @@ describe('Options', function () {
     describe('dateTimeSeparator', function () {
         it('should define separator between date string and time', function () {
             var date = new Date(2016,2,9,11,24);
-            dp = $input.datepicker({
+            dp = $input.airDatepicker({
                 timepicker: true,
                 onSelect: function (fd, d) {
                     expect(fd).to.be.equal('09.03.2016 time separator 11:24')
                 },
                 dateTimeSeparator: ' time separator '
-            }).data('datepicker');
+            }).data('airDatepicker');
 
             dp.selectDate(date);
 
@@ -895,13 +895,13 @@ describe('Options', function () {
     describe('timeFormat', function () {
         it('should define time format', function () {
             var date = new Date(2016,2,9,9,4);
-            dp = $input.datepicker({
+            dp = $input.airDatepicker({
                 timepicker: true,
                 timeFormat: 'h - ii',
                 onSelect: function (fd, d) {
                     expect(fd).to.be.equal('09.03.2016 9 - 04')
                 }
-            }).data('datepicker');
+            }).data('airDatepicker');
 
             dp.selectDate(date);
         })
@@ -911,14 +911,14 @@ describe('Options', function () {
         it('should set minimum hours value', function () {
             var date = new Date();
             date.setHours(9);
-            dp = $input.datepicker({
+            dp = $input.airDatepicker({
                 timepicker: true,
                 minHours: 10,
                 onSelect: function (fd, d) {
                     var hours = d.getHours();
                     expect(hours).to.be.equal(10)
                 }
-            }).data('datepicker');
+            }).data('airDatepicker');
             dp.selectDate(date);
         })
     });
@@ -927,14 +927,14 @@ describe('Options', function () {
         it('should set minimum minutes value', function () {
             var date = new Date();
             date.setMinutes(20);
-            dp = $input.datepicker({
+            dp = $input.airDatepicker({
                 timepicker: true,
                 minMinutes: 30,
                 onSelect: function (fd, d) {
                     var minutes = d.getMinutes();
                     expect(minutes).to.be.equal(30)
                 }
-            }).data('datepicker');
+            }).data('airDatepicker');
             dp.selectDate(date);
         })
     });
@@ -943,14 +943,14 @@ describe('Options', function () {
         it('should set maximum hours value', function () {
             var date = new Date();
             date.setHours(20);
-            dp = $input.datepicker({
+            dp = $input.airDatepicker({
                 timepicker: true,
                 maxHours: 18,
                 onSelect: function (fd, d) {
                     var hours = d.getHours();
                     expect(hours).to.be.equal(18)
                 }
-            }).data('datepicker');
+            }).data('airDatepicker');
             dp.selectDate(date);
         })
     });
@@ -959,14 +959,14 @@ describe('Options', function () {
         it('should set maximum minutes value', function () {
             var date = new Date();
             date.setMinutes(50);
-            dp = $input.datepicker({
+            dp = $input.airDatepicker({
                 timepicker: true,
                 maxMinutes: 30,
                 onSelect: function (fd, d) {
                     var minutes = d.getMinutes();
                     expect(minutes).to.be.equal(30)
                 }
-            }).data('datepicker');
+            }).data('airDatepicker');
             dp.selectDate(date);
         })
     })

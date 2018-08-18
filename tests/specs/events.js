@@ -31,13 +31,13 @@ var assert = chai.assert,
         it('should add callback when user selects date', function () {
             var date = new Date(2016,0,13);
 
-            dp = $input.datepicker({
+            dp = $input.airDatepicker({
                 onSelect: function (fd, d, inst) {
                     expect(fd).to.be.equal('13.01.2016');
                     expect(d).to.be.instanceof(Date);
-                    expect(inst).to.be.instanceof($.fn.datepicker.Constructor);
+                    expect(inst).to.be.instanceof($.fn.airDatepicker.Constructor);
                 }
-            }).data('datepicker');
+            }).data('airDatepicker');
 
             dp.selectDate(date);
 
@@ -48,12 +48,12 @@ var assert = chai.assert,
                 date2 = new Date(2016,0,23),
                 dates = [];
 
-            dp = $input.datepicker({
+            dp = $input.airDatepicker({
                 multipleDates: true,
                 onSelect: function (fd, d, inst) {
                     dates = d;
                 }
-            }).data('datepicker');
+            }).data('airDatepicker');
 
             dp.selectDate(date);
             dp.selectDate(date2);
@@ -66,12 +66,12 @@ var assert = chai.assert,
                 date2 = new Date(2016,0,23),
                 dates = [];
 
-            dp = $input.datepicker({
+            dp = $input.airDatepicker({
                 range: true,
                 onSelect: function (fd, d, inst) {
                     dates = d;
                 }
-            }).data('datepicker');
+            }).data('airDatepicker');
 
             dp.selectDate(date);
             dp.selectDate(date2);
@@ -79,17 +79,17 @@ var assert = chai.assert,
             expect(dates).to.have.length(2)
         })
     });
-    
+
     describe('onShow', function () {
         it('should add callback when datepicker is showing', function () {
             var test = '';
-            dp = $input.datepicker({
+            dp = $input.airDatepicker({
                 onShow: function (dp, completed) {
                     if (!completed) {
                         test = dp;
                     }
                 }
-            }).data('datepicker');
+            }).data('airDatepicker');
 
             dp.show();
             expect(test).to.be.equal(dp);
@@ -99,13 +99,13 @@ var assert = chai.assert,
     describe('onHide', function () {
         it('should add callback when datepicker is hiding (after transition completed)', function () {
             var test = '';
-            dp = $input.datepicker({
+            dp = $input.airDatepicker({
                 onHide: function (dp, completed) {
                     if (!completed) {
                         test = dp;
                     }
                 }
-            }).data('datepicker');
+            }).data('airDatepicker');
 
             dp.show();
             dp.hide();
@@ -115,12 +115,12 @@ var assert = chai.assert,
 
     describe('onRenderCell', function () {
         it('should add callback when cell is rendered', function () {
-            dp = $input.datepicker({
+            dp = $input.airDatepicker({
                 onRenderCell: function (d, type) {
                     expect(d).to.be.instanceOf(Date);
                     expect(type).to.be.equal('day');
                 }
-            }).data('datepicker');
+            }).data('airDatepicker');
         })
     });
 
@@ -128,11 +128,11 @@ var assert = chai.assert,
         it('should add callback when view is changed', function () {
             var _view;
 
-            dp = $input.datepicker({
+            dp = $input.airDatepicker({
                 onChangeView: function (view) {
                     _view = view;
                 }
-            }).data('datepicker');
+            }).data('airDatepicker');
 
             dp.view = 'months';
             expect(_view).to.be.equal('months')
@@ -143,15 +143,15 @@ var assert = chai.assert,
         it('should add callback when month is changed', function () {
             var _month, _year;
 
-            dp = $input.datepicker({
+            dp = $input.airDatepicker({
                 startDate: new Date(2016, 0, 22),
                 onChangeMonth: function (month, year) {
                     _month = month;
                     _year = year;
                 }
-            }).data('datepicker');
+            }).data('airDatepicker');
 
-            $('.datepicker--nav-action[data-action="next"]',dp.$datepicker).click();
+            $('.datepicker--nav-action[data-action="next"]',dp.$airDatepicker).click();
 
             expect(_month).to.be.equal(1);
             expect(_year).to.be.equal(2016)
@@ -162,15 +162,15 @@ var assert = chai.assert,
         it('should add callback when year is changed', function () {
             var _year;
 
-            dp = $input.datepicker({
+            dp = $input.airDatepicker({
                 startDate: new Date(2016, 0, 22),
                 view: 'months',
                 onChangeYear: function (year) {
                     _year = year;
                 }
-            }).data('datepicker');
+            }).data('airDatepicker');
 
-            $('.datepicker--nav-action[data-action="next"]',dp.$datepicker).click();
+            $('.datepicker--nav-action[data-action="next"]',dp.$airDatepicker).click();
 
             expect(_year).to.be.equal(2017)
         })
@@ -180,15 +180,15 @@ var assert = chai.assert,
         it('should add callback when decade is changed', function () {
             var _decade;
 
-            dp = $input.datepicker({
+            dp = $input.airDatepicker({
                 startDate: new Date(2016, 0, 22),
                 view: 'years',
                 onChangeDecade: function (decade) {
                     _decade = decade;
                 }
-            }).data('datepicker');
+            }).data('airDatepicker');
 
-            $('.datepicker--nav-action[data-action="next"]',dp.$datepicker).click();
+            $('.datepicker--nav-action[data-action="next"]',dp.$airDatepicker).click();
 
             expect(_decade).to.have.length(2);
             expect(_decade[0]).to.be.equal(2020);

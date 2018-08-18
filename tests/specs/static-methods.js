@@ -1,8 +1,8 @@
 var assert = chai.assert,
     expect = chai.expect,
-    plugin = $.fn.datepicker.Constructor;
+    plugin = $.fn.airDatepicker.Constructor;
 
-describe('Datepicker', function () {
+describe('AirDatepicker', function () {
     describe('getDaysCount', function () {
         it('should return 31 days in December', function () {
             assert.equal(plugin.getDaysCount(new Date(2015, 11)), 31)
